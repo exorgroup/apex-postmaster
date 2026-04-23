@@ -1,0 +1,939 @@
+/* APEX PostMaster — Design Tokens */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --ap-bg: #0a0b0f;
+  --ap-surface: #13141a;
+  --ap-surface-hover: #1a1b23;
+  --ap-border: #1e2028;
+  --ap-border-hover: #2d2f3a;
+  --ap-text: #e4e6eb;
+  --ap-text-muted: #7a7f8e;
+  --ap-text-dim: #4b4f5e;
+  --ap-accent: #6366f1;
+  --ap-accent-hover: #818cf8;
+  --ap-accent-subtle: rgba(99, 102, 241, 0.12);
+  --ap-success: #22c55e;
+  --ap-warning: #f59e0b;
+  --ap-danger: #ef4444;
+  --ap-radius: 12px;
+  --ap-radius-sm: 8px;
+  --ap-radius-lg: 16px;
+  --ap-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --ap-shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+  --ap-transition: 0.2s ease;
+  --ap-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ap-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ap-font);
+  background: var(--ap-bg);
+  color: var(--ap-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* Override PrimeVue surface colours for dark theme */
+.app-dark {
+  --p-surface-0: #0a0b0f;
+  --p-surface-50: #0e0f14;
+  --p-surface-100: #13141a;
+  --p-surface-200: #1a1b23;
+  --p-surface-300: #24262f;
+  --p-surface-400: #2d2f3a;
+  --p-surface-500: #4b4f5e;
+  --p-surface-600: #7a7f8e;
+  --p-surface-700: #9ca0ae;
+  --p-surface-800: #c4c7d0;
+  --p-surface-900: #e4e6eb;
+  --p-primary-color: var(--ap-accent);
+  --p-primary-contrast-color: #ffffff;
+  --p-text-color: var(--ap-text);
+  --p-text-muted-color: var(--ap-text-muted);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 0.5rem 0;
+}
+
+h1 { font-size: 1.875rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.125rem; }
+
+a {
+  color: var(--ap-accent);
+  text-decoration: none;
+  transition: color var(--ap-transition);
+}
+a:hover {
+  color: var(--ap-accent-hover);
+}
+
+/* Utility classes */
+.apCard {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-border);
+  border-radius: var(--ap-radius);
+  padding: 1.5rem;
+  transition: border-color var(--ap-transition);
+}
+.apCard:hover {
+  border-color: var(--ap-border-hover);
+}
+
+.apCardFlat {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-border);
+  border-radius: var(--ap-radius);
+  padding: 1.5rem;
+}
+
+.apMetric {
+  font-family: var(--ap-font-mono);
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.apMetricSm {
+  font-family: var(--ap-font-mono);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.apLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ap-text-muted);
+}
+
+.apMono {
+  font-family: var(--ap-font-mono);
+}
+
+.apTextMuted {
+  color: var(--ap-text-muted);
+}
+
+.apTextDim {
+  color: var(--ap-text-dim);
+}
+
+.apFadeIn {
+  animation: apFadeIn 0.3s ease;
+}
+
+@keyframes apFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Platform colours */
+.platformTwitter { --platform-color: #1d9bf0; }
+.platformLinkedin { --platform-color: #0a66c2; }
+.platformInstagram { --platform-color: #e1306c; }
+.platformYoutube { --platform-color: #ff0000; }
+.platformFacebook { --platform-color: #1877f2; }
+.platformThreads { --platform-color: #999999; }
+.platformTiktok { --platform-color: #00f2ea; }
+
+/* Status colours */
+.statusDraft { color: var(--ap-text-muted); }
+.statusScheduled { color: var(--ap-accent); }
+.statusPublishing { color: var(--ap-warning); }
+.statusPublished { color: var(--ap-success); }
+.statusFailed { color: var(--ap-danger); }
+
+/* Sidebar */
+.apSidebar {
+  width: 240px;
+  background: var(--ap-surface);
+  border-right: 1px solid var(--ap-border);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+}
+
+.apSidebarNav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0;
+}
+
+.apNavItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  color: var(--ap-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--ap-transition);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.apNavItem:hover {
+  color: var(--ap-text);
+  background: var(--ap-surface-hover);
+}
+
+.apNavItem.active {
+  color: var(--ap-text);
+  background: var(--ap-accent-subtle);
+}
+
+.apNavItem i {
+  font-size: 1.125rem;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.apNavSection {
+  padding: 1rem 1.25rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ap-text-dim);
+}
+
+/* Header */
+.apHeader {
+  height: 60px;
+  background: var(--ap-surface);
+  border-bottom: 1px solid var(--ap-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 240px;
+  z-index: 40;
+}
+
+.apHeaderMobile {
+  left: 0;
+}
+
+/* Main content */
+.apMain {
+  margin-left: 240px;
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+  padding: 1.5rem;
+}
+
+.apMainFull {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+/* Bottom nav (mobile) */
+.apBottomNav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--ap-surface);
+  border-top: 1px solid var(--ap-border);
+  z-index: 50;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.apBottomNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--ap-text-muted);
+  font-size: 0.625rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.apBottomNavItem i {
+  font-size: 1.25rem;
+}
+
+.apBottomNavItem.active {
+  color: var(--ap-accent);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .apSidebar {
+    display: none;
+  }
+  .apSidebar.open {
+    display: flex;
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    width: 100%;
+    background: var(--ap-bg);
+  }
+  .apHeader {
+    left: 0;
+  }
+  .apMain {
+    margin-left: 0;
+    margin-bottom: 56px;
+  }
+  .apBottomNav {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .apSidebar {
+    display: flex !important;
+  }
+  .apBottomNav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .apCard {
+    padding: 1rem;
+  }
+  .apMain {
+    padding: 1rem;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ap-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Form inputs override for dark theme */
+.app-dark input,
+.app-dark textarea,
+.app-dark select {
+  background: var(--ap-surface) !important;
+  border: 1px solid var(--ap-accent) !important;
+  color: var(--ap-text) !important;
+}
+
+.app-dark input:focus,
+.app-dark textarea:focus,
+.app-dark select:focus {
+  border-color: var(--ap-accent) !important;
+  box-shadow: 0 0 0 2px var(--ap-accent-subtle) !important;
+}
+
+/* Badge */
+.apBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.375rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background: var(--ap-accent);
+  color: white;
+}
+
+/* Empty state */
+.apEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  color: var(--ap-text-muted);
+}
+
+.apEmpty i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.apEmpty h3 {
+  color: var(--ap-text);
+  margin-bottom: 0.5rem;
+}
+
+/* Page header */
+.apPageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.apPageTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Divider */
+.apDivider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--ap-text-muted);
+  font-size: 0.75rem;
+}
+
+.apDivider::before,
+.apDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ap-border);
+}
+
+/* Avatar */
+.apAvatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--ap-surface-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.apAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.apAvatarSm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.apAvatarLg {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* Skeleton loading */
+.apSkeleton {
+  background: linear-gradient(90deg, var(--ap-surface) 25%, var(--ap-surface-hover) 50%, var(--ap-surface) 75%);
+  background-size: 200% 100%;
+  animation: apSkeleton 1.5s infinite;
+  border-radius: var(--ap-radius-sm);
+}
+
+@keyframes apSkeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Logo */
+.apLogo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ap-text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.apLogo span {
+  color: var(--ap-accent);
+}
+
+/* Toast customization */
+.p-toast {
+  z-index: 9999 !important;
+}
+
+/* PrimeVue Button override */
+.app-dark .p-button {
+  border-radius: var(--ap-radius-sm);
+}
+
+.app-dark .p-button.p-button-primary {
+  background: var(--ap-accent);
+  border-color: var(--ap-accent);
+}
+
+.app-dark .p-button.p-button-primary:hover {
+  background: var(--ap-accent-hover);
+  border-color: var(--ap-accent-hover);
+}
+
+.app-dark .p-button.p-button-secondary {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+  color: var(--ap-text);
+}
+
+.app-dark .p-button.p-button-secondary:hover {
+  background: var(--ap-surface-hover);
+  border-color: var(--ap-border-hover);
+}
+
+/* PrimeVue InputText override */
+.app-dark .p-inputtext {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-accent);
+  color: var(--ap-text);
+  border-radius: var(--ap-radius-sm);
+}
+
+.app-dark .p-inputtext:focus {
+  border-color: var(--ap-accent);
+  box-shadow: 0 0 0 2px var(--ap-accent-subtle);
+}
+
+/* PrimeVue DataTable override */
+.app-dark .p-datatable {
+  background: var(--ap-surface);
+  border-radius: var(--ap-radius);
+}
+
+.app-dark .p-datatable .p-datatable-header {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+}
+
+.app-dark .p-datatable .p-datatable-thead > tr > th {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+  color: var(--ap-text-muted);
+}
+
+.app-dark .p-datatable .p-datatable-tbody > tr {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+}
+
+.app-dark .p-datatable .p-datatable-tbody > tr:hover {
+  background: var(--ap-surface-hover);
+}
+
+/* PrimeVue Dialog override */
+.app-dark .p-dialog {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-border);
+  border-radius: var(--ap-radius-lg);
+}
+
+.app-dark .p-dialog .p-dialog-header {
+  background: var(--ap-surface);
+  border-bottom: 1px solid var(--ap-border);
+}
+
+.app-dark .p-dialog .p-dialog-content {
+  background: var(--ap-surface);
+}
+
+.app-dark .p-dialog .p-dialog-footer {
+  background: var(--ap-surface);
+  border-top: 1px solid var(--ap-border);
+}
+
+/* PrimeVue Menu override */
+.app-dark .p-menu {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-border);
+  border-radius: var(--ap-radius);
+}
+
+.app-dark .p-menu .p-menuitem-link:hover {
+  background: var(--ap-surface-hover);
+}
+
+/* Tabs override */
+.app-dark .p-tabview .p-tabview-nav {
+  background: transparent;
+  border-color: var(--ap-border);
+}
+
+.app-dark .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ap-text-muted);
+}
+
+.app-dark .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: transparent;
+  border-color: var(--ap-accent);
+  color: var(--ap-text);
+}
+
+.app-dark .p-tabview .p-tabview-panels {
+  background: transparent;
+}
+
+/* PrimeVue Select/Dropdown override */
+.app-dark .p-select,
+.app-dark .p-dropdown {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-accent);
+  color: var(--ap-text);
+  border-radius: var(--ap-radius-sm);
+}
+
+.app-dark .p-select:hover,
+.app-dark .p-dropdown:hover {
+  border-color: var(--ap-border-hover);
+}
+
+.app-dark .p-select:focus,
+.app-dark .p-select.p-focus,
+.app-dark .p-dropdown:focus,
+.app-dark .p-dropdown.p-focus {
+  border-color: var(--ap-accent);
+  box-shadow: 0 0 0 2px var(--ap-accent-subtle);
+}
+
+.app-dark .p-select-label,
+.app-dark .p-dropdown-label {
+  color: var(--ap-text);
+}
+
+.app-dark .p-select-overlay,
+.app-dark .p-select-panel,
+.app-dark .p-dropdown-panel {
+  background: var(--ap-surface) !important;
+  border: 1px solid var(--ap-border);
+  border-radius: var(--ap-radius-sm);
+}
+
+.app-dark .p-select-list,
+.app-dark .p-dropdown-items {
+  background: var(--ap-surface);
+}
+
+.app-dark .p-select-option,
+.app-dark .p-dropdown-item {
+  color: var(--ap-text);
+  background: var(--ap-surface);
+}
+
+.app-dark .p-select-option:hover,
+.app-dark .p-select-option.p-focus,
+.app-dark .p-dropdown-item:hover,
+.app-dark .p-dropdown-item.p-focus {
+  background: var(--ap-surface-hover) !important;
+  color: var(--ap-text);
+}
+
+.app-dark .p-select-option.p-selected,
+.app-dark .p-select-option.p-highlight,
+.app-dark .p-dropdown-item.p-highlight {
+  background: var(--ap-accent-subtle) !important;
+  color: var(--ap-accent);
+}
+
+/* PrimeVue Paginator override */
+.app-dark .p-paginator {
+  background: var(--ap-surface) !important;
+  border-color: var(--ap-border);
+  color: var(--ap-text);
+}
+
+.app-dark .p-paginator .p-paginator-first,
+.app-dark .p-paginator .p-paginator-prev,
+.app-dark .p-paginator .p-paginator-next,
+.app-dark .p-paginator .p-paginator-last,
+.app-dark .p-paginator .p-paginator-page {
+  background: var(--ap-surface) !important;
+  border-color: var(--ap-border);
+  color: var(--ap-text) !important;
+}
+
+.app-dark .p-paginator .p-paginator-first:hover,
+.app-dark .p-paginator .p-paginator-prev:hover,
+.app-dark .p-paginator .p-paginator-next:hover,
+.app-dark .p-paginator .p-paginator-last:hover,
+.app-dark .p-paginator .p-paginator-page:hover {
+  background: var(--ap-surface-hover) !important;
+  border-color: var(--ap-border-hover);
+  color: var(--ap-text) !important;
+}
+
+.app-dark .p-paginator .p-paginator-page.p-highlight {
+  background: var(--ap-accent) !important;
+  border-color: var(--ap-accent);
+  color: white !important;
+}
+
+.app-dark .p-paginator .p-select,
+.app-dark .p-paginator .p-dropdown {
+  background: var(--ap-surface) !important;
+  border-color: var(--ap-border);
+  color: var(--ap-text) !important;
+}
+
+.app-dark .p-paginator .p-select .p-select-label,
+.app-dark .p-paginator .p-dropdown .p-dropdown-label {
+  color: var(--ap-text) !important;
+}
+
+/* PrimeVue TabMenu override */
+.app-dark .p-tabmenu {
+  background: transparent;
+}
+
+.app-dark .p-tabmenu .p-tabmenu-nav {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+  border-radius: var(--ap-radius);
+}
+
+.app-dark .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+  background: transparent;
+  color: var(--ap-text-muted);
+  border-color: transparent;
+}
+
+.app-dark .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:hover {
+  background: var(--ap-surface-hover);
+  color: var(--ap-text);
+}
+
+.app-dark .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+  background: var(--ap-accent-subtle);
+  color: var(--ap-accent);
+  border-color: var(--ap-accent);
+}
+
+/* PrimeVue Tabs override (v4 API) */
+.app-dark .p-tabs {
+  background: transparent;
+}
+
+.app-dark .p-tablist {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+}
+
+.app-dark .p-tab {
+  background: transparent;
+  color: var(--ap-text-muted);
+  border-color: transparent;
+}
+
+.app-dark .p-tab:hover {
+  background: var(--ap-surface-hover);
+  color: var(--ap-text);
+}
+
+.app-dark .p-tab.p-tab-active,
+.app-dark .p-tab[data-p-active="true"] {
+  background: var(--ap-accent-subtle);
+  color: var(--ap-accent);
+  border-color: var(--ap-accent);
+}
+
+.app-dark .p-tabpanels {
+  background: transparent;
+}
+
+.app-dark .p-tabpanel {
+  background: transparent;
+}
+
+/* PrimeVue ProgressBar override */
+.app-dark .p-progressbar {
+  background: var(--ap-surface-hover);
+  border-radius: var(--ap-radius-sm);
+}
+
+.app-dark .p-progressbar .p-progressbar-value {
+  background: var(--ap-accent);
+}
+
+/* PrimeVue TabView nav override */
+.app-dark .p-tabview-tablist-container {
+  background: var(--ap-surface) !important;
+}
+
+.app-dark .p-tabview-tablist {
+  background: var(--ap-surface) !important;
+}
+
+.app-dark .p-tabview-tablist-item {
+  background: transparent !important;
+}
+
+.app-dark .p-tabview-tab-header {
+  background: transparent !important;
+  color: var(--ap-text-muted) !important;
+}
+
+.app-dark .p-tabview-tab-header:hover {
+  background: var(--ap-surface-hover) !important;
+  color: var(--ap-text) !important;
+}
+
+.app-dark .p-tabview-tablist-item-active .p-tabview-tab-header {
+  background: var(--ap-accent-subtle) !important;
+  color: var(--ap-accent) !important;
+}
+
+.app-dark .p-tabview .p-tabview-nav {
+  background: var(--ap-surface) !important;
+  border-color: var(--ap-border);
+}
+
+.app-dark .p-tabview .p-tabview-nav li {
+  background: transparent !important;
+}
+
+.app-dark .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: transparent !important;
+  color: var(--ap-text-muted);
+}
+
+.app-dark .p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
+  background: var(--ap-surface-hover) !important;
+  color: var(--ap-text);
+}
+
+.app-dark .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: var(--ap-accent-subtle) !important;
+  color: var(--ap-accent);
+  border-color: var(--ap-accent);
+}
+
+/* PrimeVue MultiSelect override */
+.app-dark .p-multiselect {
+  background: var(--ap-surface);
+  border: 1px solid var(--ap-accent);
+  color: var(--ap-text);
+  border-radius: var(--ap-radius-sm);
+}
+
+.app-dark .p-multiselect:hover {
+  border-color: var(--ap-border-hover);
+}
+
+.app-dark .p-multiselect.p-focus {
+  border-color: var(--ap-accent);
+  box-shadow: 0 0 0 2px var(--ap-accent-subtle);
+}
+
+.app-dark .p-multiselect-label {
+  color: var(--ap-text);
+}
+
+.app-dark .p-multiselect-panel,
+.app-dark .p-multiselect-overlay {
+  background: var(--ap-surface) !important;
+  border: 1px solid var(--ap-border);
+  border-radius: var(--ap-radius-sm);
+}
+
+.app-dark .p-multiselect-items {
+  background: var(--ap-surface);
+}
+
+.app-dark .p-multiselect-item {
+  color: var(--ap-text);
+  background: var(--ap-surface);
+}
+
+.app-dark .p-multiselect-item:hover,
+.app-dark .p-multiselect-item.p-focus {
+  background: var(--ap-surface-hover) !important;
+  color: var(--ap-text);
+}
+
+.app-dark .p-multiselect-item.p-highlight {
+  background: var(--ap-accent-subtle) !important;
+  color: var(--ap-accent);
+}
+
+/* PrimeVue Calendar/DatePicker override */
+.app-dark .p-calendar {
+  border: 1px solid var(--ap-accent);
+}
+
+.app-dark .p-datepicker {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+  color: var(--ap-text);
+}
+
+.app-dark .p-datepicker-panel {
+  background: var(--ap-surface) !important;
+  border: 1px solid var(--ap-border);
+}
+
+.app-dark .p-datepicker-header {
+  background: var(--ap-surface);
+  border-color: var(--ap-border);
+  color: var(--ap-text);
+}
+
+.app-dark .p-datepicker table td > span {
+  color: var(--ap-text);
+}
+
+.app-dark .p-datepicker table td > span:hover {
+  background: var(--ap-surface-hover);
+}
+
+.app-dark .p-datepicker table td.p-datepicker-today > span {
+  background: var(--ap-accent-subtle);
+  color: var(--ap-accent);
+}

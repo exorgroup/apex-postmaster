@@ -1,0 +1,115 @@
+{
+  "cleanupPeriodDays": 180,
+  "env": {
+    "COMPOSER_MEMORY_LIMIT": "-1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(dir \"c:\\\\WorkFolder\\\\APEX TBX\" /b)",
+      "Bash(dir:*)",
+      "Bash(composer create-project:*)",
+      "Bash(composer require:*)",
+      "Bash(composer install*)",
+      "Bash(composer dump-autoload*)",
+      "Bash(composer audit)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev)",
+      "Bash(npm run lint*)",
+      "Bash(npm audit)",
+      "Bash(npx prettier *)",
+      "Bash(php artisan breeze:install:*)",
+      "Bash(php artisan make:*)",
+      "Bash(php artisan migrate)",
+      "Bash(php artisan migrate:rollback)",
+      "Bash(php artisan migrate:status)",
+      "Bash(php artisan db:seed*)",
+      "Bash(php artisan route:list*)",
+      "Bash(php artisan route:clear)",
+      "Bash(php artisan cache:clear)",
+      "Bash(php artisan config:clear)",
+      "Bash(php artisan view:clear)",
+      "Bash(php artisan optimize:clear)",
+      "Bash(php artisan queue:*)",
+      "Bash(php artisan schedule:*)",
+      "Bash(php artisan test*)",
+      "Bash(php artisan tinker*)",
+      "Bash(php artisan key:generate)",
+      "Bash(php artisan storage:link)",
+      "Bash(php artisan vendor:publish*)",
+      "Bash(./vendor/bin/pint*)",
+      "Bash(./vendor/bin/phpstan*)",
+      "Bash(./vendor/bin/pest*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(git add *)",
+      "Bash(git commit -m *)",
+      "Bash(git checkout -b *)",
+      "WebFetch(domain:laravel.com)",
+      "WebFetch(domain:primevue.org)",
+      "WebFetch(domain:inertiajs.com)",
+      "WebFetch(domain:vuejs.org)",
+      "WebFetch(domain:stripe.com)",
+      "WebFetch(domain:developer.paypal.com)",
+      "WebFetch(domain:github.com/exorgroup)",
+      "WebFetch(domain:raw.githubusercontent.com/exorgroup)",
+      "Bash(php artisan *)",
+      "Bash(npx vite *)",
+      "Bash(xargs grep *)",
+      "Bash(find resources/js/Pages/Admin/Events/modals -name \"*.vue\" -exec wc -l {} +)",
+      "Bash(find resources/js/Pages/Admin/Events/tabs -name \"*.vue\" -exec wc -l {} +)",
+      "Bash(find resources/js/Pages/Admin/Events/modals resources/js/Pages/Admin/Events/tabs -name \"*.vue\" -exec wc -l {} +)",
+      "Bash(findstr \"align\" \"c:\\\\WorkFolder\\\\APEX TBX\\\\node_modules\\\\primeicons\\\\primeicons.css\")",
+      "Bash(findstr /R \"pi-align\")",
+      "Bash(findstr \"pi-align\" \"c:\\\\WorkFolder\\\\APEX TBX\\\\node_modules\\\\primeicons\\\\primeicons.css\")",
+      "Bash(findstr \"pi-arrow\" \"c:\\\\WorkFolder\\\\APEX TBX\\\\node_modules\\\\primeicons\\\\primeicons.css\")",
+      "Bash(findstr \"before\")",
+      "Bash(findstr \"pi-bars\\\\|pi-minus\\\\|pi-equals\\\\|pi-grip\\\\|pi-border\" \"c:\\\\WorkFolder\\\\APEX TBX\\\\node_modules\\\\primeicons\\\\primeicons.css\")",
+      "Bash(findstr \"before\" \"c:\\\\WorkFolder\\\\APEX TBX\\\\node_modules\\\\primeicons\\\\primeicons.css\")",
+      "Bash(findstr \"bars minus equals\")",
+      "Bash(node -e \"try { require.resolve\\('primevue/tabview'\\); console.log\\('tabview: found'\\); } catch\\(e\\) { console.log\\('tabview: NOT FOUND'\\); }\")",
+      "Bash(node -e \"try { require.resolve\\('primevue/tabs'\\); console.log\\('tabs: found'\\); } catch\\(e\\) { console.log\\('tabs: NOT FOUND'\\); }\")",
+      "Bash(ls -la public/build/manifest.json)",
+      "Bash(ls -la public/build/.vite/manifest.json)",
+      "Bash(node -e \"const Konva = require\\('konva'\\); const t = new Konva.Transformer\\(\\); console.log\\(t.getClassName\\(\\)\\);\")",
+      "Bash(find . -name \".gitignore\" -maxdepth 2)",
+      "Bash(ls .env*)",
+      "Bash(ls -d vendor)",
+      "Bash(ls -d node_modules)",
+      "Bash(npx vue-compiler-sfc *)",
+      "Bash(node -e ' *)",
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(git init *)",
+      "Bash(git remote *)"
+    ],
+    "deny": [
+      "Bash(php artisan db:wipe*)",
+      "Bash(composer update*)",
+      "Bash(npm update*)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(rmdir /s*)",
+      "Bash(del /f /s*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ \"$CLAUDE_FILE_PATH\" == *.php ]]; then ./vendor/bin/pint \"$CLAUDE_FILE_PATH\" 2>/dev/null || true; fi"
+          },
+          {
+            "type": "command",
+            "command": "if [[ \"$CLAUDE_FILE_PATH\" == *.vue || \"$CLAUDE_FILE_PATH\" == *.js ]]; then npx prettier --write \"$CLAUDE_FILE_PATH\" 2>/dev/null || true; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
